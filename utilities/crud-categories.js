@@ -1,24 +1,19 @@
-const {PrismaClient} = require ("@prisma/client");
-
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // Create Category
 const createCategory = (label) => {
-    prisma.category.create({
-        data: { label }
-    })
-    .then(category => console.log(category))
-    .catch(err => console.error(err));
+    return prisma.categories.create({
+        data: { name: label }
+    });
 };
 
 // Read Category
 const readCategories = () => {
-    prisma.category.findMany()
-    .then(categories => console.log(categories))
-    .catch(err => console.error(err));
-}
+    return prisma.categories.findMany();
+};
 
 module.exports = {
     createCategory,
     readCategories
-}
+};
